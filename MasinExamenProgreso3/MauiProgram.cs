@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MasinExamenProgreso3.Data;
+using Microsoft.Extensions.Logging;
 
 namespace MasinExamenProgreso3
 {
@@ -16,8 +17,12 @@ namespace MasinExamenProgreso3
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
+
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "productos.db3");
+            builder.Services.AddSingleton(new ProductoRepository(dbPath));
+            builder.Services.AddSingleton(new LogService("Masin"));
 
             return builder.Build();
         }
