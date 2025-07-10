@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace MasinExamenProgreso3.Helpers
 {
-    internal class FileAccessHelper
+    public static class FileAccessHelper
     {
+        public static string GetLocalFilePath(string filename)
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            return Path.Combine(path, filename);
+        }
     }
 }
